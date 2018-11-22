@@ -16,8 +16,6 @@ void autoKlapanfunc() {
         if (isnan(t)) return; // если ошибка чтения с датчика
         if (t > MAXTEMPERATURE) {
           digitalWrite(KLAPAN, RELAY_OFF);
-          /* Добавил выкл. светодиод состояния*/
-          digitalWrite(LEDKLAPAN, 0);
           stateklapan = 0;
 #ifdef DEBUG
           Serial.print(" max is ");
@@ -28,8 +26,6 @@ void autoKlapanfunc() {
 #endif
         } else if (t < MAXTEMPERATURE) {
           digitalWrite(KLAPAN, RELAY_ON);
-          /* Добавил работающий светодиод состояния*/
-          digitalWrite(LEDKLAPAN, 1);
           stateklapan = 1;
 #ifdef DEBUG
           Serial.print(" max is ");
@@ -70,8 +66,6 @@ void autoKlapanfunc() {
       makelamps();  // возвращаем подсветку на исходное
       stateklapan = 0;
       digitalWrite(KLAPAN, stateklapan);
-      /* Добавил выкл. светодиод состояния*/
-      digitalWrite(LEDKLAPAN, stateklapan);
       autoKlapan = 10; // GO
       break;
 
@@ -97,8 +91,6 @@ void autoKlapanfunc() {
       makelamps();  // возвращаем подсветку на исходное
       stateklapan = 1;
       digitalWrite(KLAPAN, stateklapan);
-      /* Добавил работающий светодиод состояния*/
-      digitalWrite(LEDKLAPAN, stateklapan);
       autoKlapan = 10; // GO
       break;
 
